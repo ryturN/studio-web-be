@@ -29,7 +29,7 @@ export class SupabaseImageController {
     try {
       const request = req.body;
       request.images = req.files;
-      const image_service = new SupabaseImageService('infokus')
+      const image_service = new SupabaseImageService('studios')
       const response = await image_service.upload(request)
 
       res.status(201).send({
