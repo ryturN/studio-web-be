@@ -188,20 +188,16 @@ export class ReservationService {
   static async create(request, user) {
     request.date = new Date(request.date).toISOString();
 
-    const requestDate = new Date(request.date);
-    const utc7Date = new Date(requestDate.getTime() + 7 * 60 * 60 * 1000);
-    request.date = utc7Date.toISOString();
-
     const createRequest = Validation.validate(
       ReservationValidation.CREATE,
       request,
     );
 
-    const now = new Date();
-    const utc7Today = new Date(now.getTime() + 7 * 60 * 60 * 1000);
-    utc7Today.setHours(0, 0, 0, 0);
-
-    if (new Date(createRequest.date) < utc7Today) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    console.log(today.toISOString());
+    console.log(createRequest.date);
+    if (createRequest.date <= today.toISOString()) {
       throw new ResponseError("error", 400, "Tanggal reservasi tidak valid");
     }
 
