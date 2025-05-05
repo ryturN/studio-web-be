@@ -194,6 +194,8 @@ export class ReservationService {
     );
 
     const today = new Date();
+    console.log(today.toISOString());
+    console.log(createRequest.date);
     today.setHours(0, 0, 0, 0);
 
     if (createRequest.date <= today.toISOString()) {
