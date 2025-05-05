@@ -194,9 +194,10 @@ export class ReservationService {
     );
 
     const today = new Date();
-    today.setHours(0, 0, 0, 0);
     console.log(today.toISOString());
     console.log(createRequest.date);
+    today.setHours(0, 0, 0, 0);
+
     if (createRequest.date <= today.toISOString()) {
       throw new ResponseError("error", 400, "Tanggal reservasi tidak valid");
     }
