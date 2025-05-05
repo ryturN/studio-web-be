@@ -141,8 +141,7 @@ export class SupabaseImageService {
 
     try {
       const { error } = await this.supabase.storage
-        .from(this.bucketName)
-        .remove([key]);
+        .from(this.bucketName)        .remove([key]);
 
       if (error) throw error;
 
